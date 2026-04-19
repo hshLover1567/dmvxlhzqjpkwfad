@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API HSH</title>
+    <style>
+        body {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family: Arial;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #38bdf8;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            background: #38bdf8;
+            color: black;
+            cursor: pointer;
+        }
+
+        pre {
+            text-align: left;
+            background: #020617;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🔥 API HSH Dashboard</h1>
+
+<input id="playerId" placeholder="Enter Player ID">
+<button onclick="getPlayer()">Search</button>
+
+<pre id="result">Result will show here...</pre>
+
+<script>
+async function getPlayer() {
+    const id = document.getElementById("playerId").value;
+
+    const res = await fetch(`http://localhost:3000/apihsh/player/${id}`);
+    const data = await res.json();
+
+    document.getElementById("result").textContent =
+        JSON.stringify(data, null, 2);
+}
+</script>
+
+</body>
+</html>
